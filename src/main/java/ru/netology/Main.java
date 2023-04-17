@@ -44,16 +44,12 @@ public class Main {
 
         //создание объекта запроса с производьными заголвками
         HttpGet request = new HttpGet(REMOTE_SERVICE_URL);
-//
-//        request.setHeader(HttpHeaders.ACCEPT, APPLICATION_JSON);
         //отправка запроса
         CloseableHttpResponse response = httpClient.execute(request);
         //вывод полученных заголовков
         Arrays.stream(response.getAllHeaders()).forEach(System.out::println);
         //чтение тела ответа
         System.out.println("________________________________");
-//        String body = new String(response.getEntity().getContent().readAllBytes(), StandardCharsets.UTF_8);
-//        System.out.println(body);
 
         ObjectMapper mapper = new ObjectMapper();
         List<CatsFacts> facts = mapper.readValue(response.getEntity().getContent(),
